@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
+    <title>Bienvenido y Juego de Adivinanza</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,10 +15,47 @@
         h1 {
             color: #4CAF50;
         }
+        input {
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h1>¡Bienvenido a Nuestro Sitio Web!</h1>
-    <p>Ejemplo de configuracion de App Services</p>
+    <p>Estamos encantados de tenerte aquí. ¡Intenta adivinar el número entre 1 y 100!</p>
+    
+    <input type="number" id="guess" placeholder="Adivina un número" min="1" max="100">
+    <button onclick="checkGuess()">Adivinar</button>
+    
+    <p id="message"></p>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = Number(document.getElementById('guess').value);
+            attempts++;
+
+            if (userGuess === randomNumber) {
+                document.getElementById('message').innerText = `¡Correcto! El número era ${randomNumber}. Adivinaste en ${attempts} intentos.`;
+            } else if (userGuess < randomNumber) {
+                document.getElementById('message').innerText = 'Demasiado bajo. ¡Intenta de nuevo!';
+            } else {
+                document.getElementById('message').innerText = 'Demasiado alto. ¡Intenta de nuevo!';
+            }
+        }
+    </script>
 </body>
 </html>
